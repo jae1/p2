@@ -44,10 +44,10 @@ class Item
     
     public function __construct($ID,$Name,$Description,$Price)
     {
-        $this->ID = $ID;
+        $this->ID = (int)$ID; //cast to integer
         $this->Name = $Name;
         $this->Description = $Description;
-        $this->Price = $Price;
+        $this->Price = (float)$Price; //cast to float
         
     }#end Item constructor
     
