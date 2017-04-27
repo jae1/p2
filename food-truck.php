@@ -68,23 +68,30 @@ function showData()
             //id is the second element of the array
 			//forcibly cast to an int in the process
             $id = (int)$name_array[1];
-
-			/*
-				Here is where you'll do most of your work
-				Use $id to loop your array of items and return 
-				item data such as price.
-				
-				Consider creating a function to return a specific item 
-				from your items array, for example:
-				
-				$thisItem = getItem($id);
-				
-				Use $value to determine the number of items ordered 
-				and create subtotals, etc.
 			
-			*/
-            echo "<p>You ordered $value of item number $id</p>";
-            
+			//kd - check if the value is numeric
+			if(is_numeric($value)){
+				$value = (int)$value; //kd - cast to integer so they can't order a half item
+
+				/*
+					Here is where you'll do most of your work
+					Use $id to loop your array of items and return 
+					item data such as price.
+					
+					Consider creating a function to return a specific item 
+					from your items array, for example:
+					
+					$thisItem = getItem($id);
+					
+					Use $value to determine the number of items ordered 
+					and create subtotals, etc.
+				
+				*/
+				echo "<p>You ordered " .$value." of item number $id</p>";
+            }else{
+				//kd - show error
+				echo "<p>You must put a number in the box for item number $id</p>";
+			}
         }
     }	
 	echo '<p><a href="' . THIS_PAGE . '">RESET</a></p>';
