@@ -26,6 +26,7 @@ switch ($myAction) { // check 'act' for type of process
 function showForm() { // shows form so user can enter their name.  Initial scenario
 	global $config;
 	
+	
 	echo '<form action="'.THIS_PAGE.'" method="post">';
 	foreach ($config->items as $item) {
 		//echo "<p>ID:$item->ID  Name:$item->Name</p>"; 
