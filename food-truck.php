@@ -72,24 +72,34 @@ function showData()
 			//kd - check if the value is numeric
 			if(is_numeric($value)){
 				$value = (int)$value; //kd - cast to integer so they can't order a half item
-
-				/*
-					Here is where you'll do most of your work
-					Use $id to loop your array of items and return 
-					item data such as price.
-					
-					Consider creating a function to return a specific item 
-					from your items array, for example:
-					
-					$thisItem = getItem($id);
-					
-					Use $value to determine the number of items ordered 
-					and create subtotals, etc.
 				
-				*/
+				//kd - check if input is non-negative
+				if($value >= 0){
+
+					/*
+						Here is where you'll do most of your work
+						Use $id to loop your array of items and return 
+						item data such as price.
+						
+						Consider creating a function to return a specific item 
+						from your items array, for example:
+						
+						$thisItem = getItem($id);
+						
+						Use $value to determine the number of items ordered 
+						and create subtotals, etc.
+					
+					*/
+					
 				echo "<p>You ordered " .$value." of item number $id</p>";
+				
+				}else{
+					//kd - show error for negative value input
+					echo "<p>You must put a positive number in the box for item number $id</p>";
+				}
+				
             }else{
-				//kd - show error
+				//kd - show error for non-numeric input
 				echo "<p>You must put a number in the box for item number $id</p>";
 			}
         }
