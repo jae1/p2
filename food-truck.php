@@ -54,7 +54,6 @@ function showForm() { // shows form so user can enter their name.  Initial scena
 function showData() { #form submits here we show entered name
 	
     //dumpDie($_POST);
-	
 	foreach($_POST as $name => $value) { //loop the form elements
         
         //if form name attribute starts with 'item_', process it
@@ -81,7 +80,6 @@ function showData() { #form submits here we show entered name
 			
 			*/
             if ($value > 0) { 
-				$ddd = items[$id];
 				echo "<p>You ordered $value of item number $id</p>";
 			} 
         }
@@ -89,12 +87,6 @@ function showData() { #form submits here we show entered name
 	echo '<p><a href="' . THIS_PAGE . '">RESET</a></p>';
 }
 
-
-function getItem($id) {
-	/*
-	
-	*/
-}
 
 
 ?>
