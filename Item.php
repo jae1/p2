@@ -1,7 +1,20 @@
 <?php
-//items4.php
+/**
+* Class Item - Stores menu items
+*
+* More stuff about the class
+*
+*<code>
+* $myItem = new Item($ID,$Name,$Description,$Price);
+* $myItem->addExtra("Name of extra");
+*</code>
+*
+* @author
+* @see 
+* @todo none
+*/
 
-include 'Item.php'; //kd - include the Item class file
+//items4.php
 
 $myItem = new Item(1,"Taco","Our Tacos are awesome!",4.95);
 $myItem->addExtra("Sour Cream");
@@ -35,7 +48,7 @@ echo '</pre>';
 die;
 */
 
-/* kd - class definition moved to Item.php
+
 class Item
 {
     public $ID = 0;
@@ -61,7 +74,7 @@ class Item
 
 }#end Item class
 
-*/
+
 
 
 
