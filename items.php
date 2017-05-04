@@ -1,7 +1,7 @@
 <?php
-//items4.php
+//items.php
 
-include 'Item.php'; //kd - include the Item class file
+require 'Item.php'; //kd - require the Item class file
 
 $myItem = new Item(1,"Taco","Our Tacos are awesome!",4.95);
 $myItem->addExtra("Sour Cream");
