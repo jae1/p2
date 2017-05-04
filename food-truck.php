@@ -40,7 +40,6 @@ function showForm() { // shows form so users can place an order
 	foreach ($config->items as $item) {
 		echo '<h2>' . $item->name . '</h2>';
 		echo '<h4>$' . $item->price . '</h4>';
-		echo '<h5>Quantity: <input type="number" min="0" max="10" name="item_' . $item->id . '"/></h5>';
 		echo '<select name="item_'.$item->id.'">';
 			for ($i = 0; $i <= 10; $i++) {
 				echo '<option value="'.$i.'">'.$i.'</option>';
