@@ -33,17 +33,14 @@ switch ($myAction) { // check 'act' for type of process
 	 	showForm();
 }
 
-function showForm() { // shows form so user can place an order
+function showForm() { // shows form so users can place an order
 	global $config;
 	
 	echo '<form action="'.THIS_PAGE.'" method="post">';
 	foreach ($config->items as $item) {
-		//echo "<p>ID:$item->ID  Name:$item->Name</p>"; 
-		//echo '<p>Taco <input type="text" name="item_1" /></p>';
 		echo '<h2>' . $item->name . '</h2>';
-		echo '<h5>Price: $' . $item->price . '</h5>';
-//		echo '<h5>Quantity: <input type="number" min="0" max="10" name="item_' . $item->id . '"/></h5>';
-		
+		echo '<h4>$' . $item->price . '</h4>';
+		echo '<h5>Quantity: <input type="number" min="0" max="10" name="item_' . $item->id . '"/></h5>';
 		echo '<select name="item_'.$item->id.'">';
 			for ($i = 0; $i <= 10; $i++) {
 				echo '<option value="'.$i.'">'.$i.'</option>';
@@ -59,7 +56,7 @@ function showForm() { // shows form so user can place an order
 			checkboxes
 			<checkbox name="extra_1" value="cheese">Cheese<br /> */
 		if (count($item->extras) > 0) {
-			echo '<p>Add your choice of toppings.</p>';
+			echo '<p>Add toppings of your choice</p>';
 			foreach ($item->extras as $extra) {
 				echo '<input type="checkbox" name="extra_" />' . $extra . '<br />';
 			}
@@ -117,16 +114,18 @@ function showData() { // shows what user submitted
 
 function getItem($id, $value) {
 	global $config;
-
-	$itemName = $config->items[$id - 1]->name;
-	$itemPrice = $config->items[$id - 1]->price;
+	
+	$id -= 1; 
+	$itemName = $config->items[$id]->name;
+	$itemPrice = $config->items[$id]->price;
 	$subtotal = $value * (float)$itemPrice;
-	$total = round(($subtotal * 1.101), 2); // 10.1% Seattle sales tax
+	$total = round(($subtotal * 1.101), 2); // 10.1% Seattle sales tax, round total to 2 decimal places
 	
 	return "
 		<p>You ordered $value $itemName.</p>
 		<p>Your subtotal is $$subtotal.</p>
-		<p>Your total after tax is $$total.</p>";
+		<p>Your total after tax is $$total.</p>
+	";
 }
 
 

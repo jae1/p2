@@ -1,16 +1,24 @@
 <?php
 //items4.php
 
-$myItem = new Item(1,"Taco","Our Tacos are awesome!",4.95);
+$myItem = new Item(1, "Taco", "Our Tacos are awesome!", 1.99);
 $myItem->addExtra("Sour Cream");
+$myItem->addExtra("Reduced Fat Sour Cream");
 $myItem->addExtra("Cheese");
+$myItem->addExtra("Nacho Cheese Sauce");
+$myItem->addExtra("Chipotle Sauce");
+$myItem->addExtra("Pico de Gallo");
 $myItem->addExtra("Guacamole");
 $config->items[] = $myItem;
 
-$myItem = new Item(2,"Sundae","Our Sundaes are awesome!",3.95);
-$myItem->addExtra("Sprinkles");
-$myItem->addExtra("Chocolate Sauce");
-$myItem->addExtra("Nuts");
+$myItem = new Item(2,"Burrito","Our Burritos are awesome!",3.95);
+$myItem->addExtra("Sour Cream");
+$myItem->addExtra("Reduced Fat Sour Cream");
+$myItem->addExtra("Cheese");
+$myItem->addExtra("Nacho Cheese Sauce");
+$myItem->addExtra("Chipotle Sauce");
+$myItem->addExtra("Pico de Gallo");
+$myItem->addExtra("Guacamole");
 $config->items[] = $myItem;
 
 $myItem = new Item(3,"Salad","Our Salads are awesome!",5.95);
@@ -36,36 +44,25 @@ die;
 
 class Item
 {
-    public $ID = 0;
-    public $Name = '';
-    public $Description = '';
-    public $Price = 0;
-    public $Extras = array();
+    public $id = 0;
+    public $name = '';
+    public $description = '';
+    public $price = 0;
+    public $extras = array();
     
-    public function __construct($ID,$Name,$Description,$Price)
+    public function __construct($id, $name, $description, $price)
     {
-        $this->ID = (int)$ID; //kd - cast to integer
-        $this->Name = $Name;
-        $this->Description = $Description;
-        $this->Price = (float)$Price; //kd - cast to float
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
         
     }#end Item constructor
     
     public function addExtra($extra)
     {
-        $this->Extras[] = $extra;
+        $this->extras[] = $extra;
         
     }#end addExtra()
 
 }#end Item class
-
-
-
-
-
-
-
-
-
-
-
