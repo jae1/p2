@@ -19,7 +19,7 @@
  * @todo none
  */
 
-
+/*
 class Item
 {
     public $ID = 0;
@@ -40,6 +40,32 @@ class Item
     public function addExtra($extra)
     {
         $this->Extras[] = $extra;
+        
+    }#end addExtra()
+
+}#end Item class
+*/
+
+class Item
+{
+    public $id = 0;
+    public $name = '';
+    public $description = '';
+    public $price = 0;
+    public $extras = array();
+    
+    public function __construct($id, $name, $description, $price)
+    {
+        $this->id = (int)$id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = (float)$price;
+        
+    }#end Item constructor
+    
+    public function addExtra($extra)
+    {
+        $this->extras[] = $extra;
         
     }#end addExtra()
 
