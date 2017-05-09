@@ -1,20 +1,38 @@
 <style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
-	
 	body {
 		font-family: 'Roboto', sans-serif;
 	}
-	
+
 	h2,h3,h4,h5,h6 {
 		font-weight: 400;
 	}
-	
-	input[type=number] {
-		width: 50px;
-	} 
+
+	#content {
+		border: 1px solid #e7e7e7;
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 10px;
+	}
 </style>
 
 <?php 
+/**
+ * order.php displays a menu of items and allows the user to create an order
+ * 
+ *
+ * @package LARGE_PIECE_OF_PROGRAM
+ * @subpackage SUB_PART_OF_PROGRAM
+ * @author Mariam Abdelmohsen
+ * @author Amy Bartolotta
+ * @author Kevin Daniel
+ * @author Jaewon Jeong
+ * @version 1.0 2017/05/08 
+ * @link https://jaewonjeong.com/scc/itc250/p2/food-truck.php
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ * @see items.php
+ * @todo 
+ */ 
+
 include 'items.php'; 
 
 define('THIS_PAGE', basename($_SERVER['PHP_SELF']));
@@ -36,8 +54,7 @@ switch ($myAction) { // check 'act' for type of process
 function showForm() { // shows form so users can place an order
 	global $config;
 	
-	echo '
-		<form action="'.THIS_PAGE.'" method="post">';
+	echo '<form action="'.THIS_PAGE.'" method="post">';
 	foreach ($config->items as $item) {
 		echo '<h2>' . $item->name . '</h2>';
 		echo '<h4>$' . $item->price . '</h4>';
@@ -62,11 +79,7 @@ function showForm() { // shows form so users can place an order
 	echo '</form>';
 }
 
-function showData() { // shows what user submitted
-//    echo '<pre>';
-// 	  dumpdie($_POST);
-//    echo '</pre>';
-	
+function showData() { // shows what user submitted	
 	$subtotal = 0;
 	$total = 0;
 	$thisItem = '';
@@ -82,32 +95,20 @@ function showData() { // shows what user submitted
 			// forcibly cast to an int in the process
             $id = (int)$name_array[1];
 
-			/*
-				Here is where you'll do most of your work
-				Use $id to loop your array of items and return 
-				item data such as price.
-				
-				Consider creating a function to return a specific item 
-				from your items array, for example:
-				
-				$thisItem = getItem($id);
-				
-				Use $value to determine the number of items ordered 
-				and create subtotals, etc.
-			*/
-
 			if ($value > 0) {
 				$thisItem .= getItem($id, $value);
 				$subtotal += calcSubtotal($id, $value);
 			}
         }
     }
+	
+	$tax = calcTax($subtotal);
 	$total = calcTotal($subtotal);
 	
 	echo '<h3>Your order has been placed.</h3>';
 	echo '<p>' . $thisItem . '</p><hr />';
 	echo '<p>Subtotal: $' . $subtotal . '</p>';
-	echo '<p>Tax: $' . number_format(($subtotal * 0.101), 2) . '</p>';
+	echo '<p>Tax: $' . $tax . '</p>';
 	echo '<p>Total: $' . $total . '</p>';
 	echo '<p><a href="' . THIS_PAGE . '">Clear</a></p>';
 }
@@ -129,16 +130,24 @@ function calcSubtotal ($id, $value) {
 	
 	$id -= 1; // since array index is 1 smaller
 	$itemPrice = $config->items[$id]->price;
-	$subtotal = $value * (float)$itemPrice;
+	$subtotal = number_format(($value * $itemPrice), 2);
 	
 	return $subtotal;
 }
 
+// calculates tax and returns result
+function calcTax ($subtotal) {
+	$tax = number_format(($subtotal * 0.101), 2);
+	return $tax;
+}
+
 // calculates total price and returns result
 function calcTotal ($subtotal) {
-	$total = number_format(($subtotal * 1.101), 2); // 10.1% Seattle sales tax, round total to 2 decimal places
+	$tax = calcTax($subtotal);
+	$total = number_format(($subtotal + $tax), 2); // 10.1% Seattle sales tax, round total to 2 decimal places
 	
 	return $total;
 }
+
 
 ?>
