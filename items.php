@@ -1,5 +1,5 @@
 <?php
-//items4.php
+//items.php
 
 $myItem = new Item(1, "Taco", "Our Tacos are awesome!", 1.99);
 $myItem->addExtra("Sour Cream");
