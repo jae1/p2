@@ -184,7 +184,6 @@ function calcTax ($subtotal) {
 /**
  * function calcTotal($subtotal) calculates the total by adding sales tax to the subtotal
  *
- *
  * <code>
  * $total = calcTotal($subtotal, $tax);
  * </code>
